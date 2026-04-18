@@ -1,7 +1,6 @@
 ﻿using System;
 
-class Program
-{
+
     static void Main(string[] args)
     {
         // Prompt the user to enter the first number
@@ -22,4 +21,3 @@ class Program
         // Print the sum
         // Complete Step 4:............
     }
-}
