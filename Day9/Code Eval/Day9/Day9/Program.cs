@@ -1,73 +1,75 @@
 ﻿using System;
+using System.Collections.Generic;
+class CustomCollection
+{
+    // Define internal data structure
+    // Complete Step 1:............
+    List<string> list = new List<string>();
+    // Implement indexer
+    // Complete Step 2:............
+    public string this[int index]
+    {
+        get
+        {
+            if (index < 0 || index >= list.Count)
+            {
+                throw new IndexOutOfRangeException("Index is out of range");
+            }
+            return list[index];
+        }
 
-// Define delegate type
-// Complete Step 1:............
-public delegate int Operation(int a, int b);
+        set
+        {
+            if (index < 0)
+            {
+                throw new IndexOutOfRangeException("Index cannot be negative");
+            }
+            if (index < list.Count)
+            {
+                list[index] = value;
+            }
+            else
+            {
+                while (list.Count <= index)
+                {
+                    list.Add(null);
+                }
+                list[index] = value;
+            }
+        }
+    }
+    // Define method to set elements
+    // Complete Step 3:............
+
+    // Define method to get elements
+    // Complete Step 4:............
+}
+
 class Program
 {
-    // Implement delegate methods
-    // Complete Step 2:............
-    public int Add(int a, int b)
-    {
-        return a + b;
-    }
-
-    public int Subtract(int a, int b)
-    {
-        return a - b;
-    }
-
-    public int Multiply(int a, int b)
-    {
-        return a * b;
-    }
-
-    public int Divide(int a, int b)
-    {
-        return a / b;
-    }
-    // Implement callback mechanism
-    // Complete Step 3:............
-    public static void PerformOperation(int a, int b, Operation op)
-    {
-        Console.WriteLine("Result: " + op(a, b));
-    }
     static void Main(string[] args)
     {
-        // Input handling
-        // Complete Step 4:............
-        Console.WriteLine("Enter first number:");
-        int a = int.Parse(Console.ReadLine());
+        // Create instance of CustomCollection
+        // Complete Step 7:............
+        CustomCollection custom = new CustomCollection();
 
-        Console.WriteLine("Enter second number:");
-        int b = int.Parse(Console.ReadLine());
-
-        Console.WriteLine("Enter operation (add, subtract, multiply, divide):");
-        string choice = Console.ReadLine().ToLower();
-        // Output handling
-        // Complete Step 5:............
-        Program p = new Program();
-        Operation op = null;
-        switch (choice)
+        // Loop to set and get values based on user input
+        for (int i = 0; i < 3; i++)
         {
-            case "add":
-                op = p.Add;
-                break;
-            case "subtract":
-                op = p.Subtract;
-                break;
-            case "multiply":
-                op = p.Multiply;
-                break;
-            case "divide":
-                if (b == 0) return;
-                op = p.Divide;
-                break;
-            default:
-                Console.WriteLine("Invalid operation");
-                return;
+            // Prompt the user to set elements
+            Console.WriteLine("Enter index to set:");
+            // Complete Step 5:............
+            int setIndex = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter value to set:");
+            // Complete Step 6:............
+            string value = Console.ReadLine();
+            custom[setIndex] = value;
+            // Prompt the user to get the elements
+            Console.WriteLine("Enter index to get:");
+            // Complete Step 8:............
+            int getIndex = int.Parse(Console.ReadLine());
+            string result = custom[getIndex];
+            Console.WriteLine("Retrieved value: " + result);
         }
-        if (op != null)
-            PerformOperation(a, b, op);
     }
 }
