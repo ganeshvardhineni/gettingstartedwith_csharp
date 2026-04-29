@@ -1,65 +1,47 @@
 ﻿using System;
+using System.IO;
 
-// Define PropertyDemo class
-public class PropertyDemo
-{
-    // Define properties
-    // Complete Step 1:............
-    private string User { get; set; }
-    public PropertyDemo(string user)
-    {
-        User = user;
-    }
-    public void Display()
-    {
-        Console.WriteLine("Private Value");
-    }
-}
-
-// Define StaticDemo class
-public class StaticDemo
-{
-    // Define static members
-    // Complete Step 2:............
-    public static int Number { get; set; }
-    static StaticDemo()
-    {
-        Number = 10;
-        Console.WriteLine("Static Constructor");
-    }
-    public static void NumChange()
-    {
-        Number = 20;
-    }
-
-}
-// Define MathHelper static class
-public static class MathHelper
-{
-    // Define static methods
-    // Complete Step 3:............
-    public static void Add(int a, int b)
-    {
-        Console.WriteLine("Static Method");
-        Console.WriteLine(a + b);
-    }
-}
 
 public class Program
 {
-    public static void Main()
+    public static void Main(string[] args)
     {
-        // Demonstrate usage
-        // Complete Step 4:............
-        Console.WriteLine(5);
+        // Implement exception handling
+        // Complete the code below to demonstrate various aspects of exception handling
+        try
+        {
+            if (args.Length > 0)
+            {
+                switch (args[0])
+                {
+                    case "IndexOutOfRangeException":
+                        // Trigger IndexOutOfRangeException
+                        throw new IndexOutOfRangeException();
+                    case "DivideByZeroException":
+                        // Trigger DivideByZeroException
+                        throw new DivideByZeroException();
+                    case "FileNotFoundException":
+                        // Trigger FileNotFoundException
+                        throw new FileNotFoundException();
+                }
+            }
+        }
+        catch (IndexOutOfRangeException e)
+        {
+            Console.WriteLine("Index out of range error: " + e.Message);
+        }
+        catch (DivideByZeroException e)
+        {
+            Console.WriteLine("Divide by zero error: " + e.Message);
+        }
+        catch (FileNotFoundException e)
+        {
+            Console.WriteLine("File not found error: " + e.Message);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("General error: " + e.Message);
+        }
 
-        PropertyDemo obj = new PropertyDemo("User1");
-        obj.Display();
-
-        Console.WriteLine(StaticDemo.Number);
-
-        MathHelper.Add(10, 5);
-
-        Console.WriteLine(5);
     }
 }
