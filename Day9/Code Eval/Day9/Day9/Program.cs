@@ -1,47 +1,65 @@
 ﻿using System;
 
-// Define your custom attribute class here
-// Complete Step 1:............
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method | AttributeTargets.Property)]
-public class CustomAttribute : Attribute
+// Define PropertyDemo class
+public class PropertyDemo
 {
-    public string Description { get; set; }
-    public int Version { get; set; }
-
-    public CustomAttribute(string description, int version)
+    // Define properties
+    // Complete Step 1:............
+    private string User { get; set; }
+    public PropertyDemo(string user)
     {
-        Description = description;
-        Version = version;
+        User = user;
+    }
+    public void Display()
+    {
+        Console.WriteLine("Private Value");
     }
 }
-// Example usage of the custom attribute
-// Complete Step 2:............
-[CustomAttribute("This is a sample class.", 1)]
-class SampleClass
-{
-    [CustomAttribute("This is a sample property.", 3)]
-    public string SampleProperty { get; set; }
 
-    [CustomAttribute("This is a sample method.", 2)]
-    public void SampleMethod() { }
-}
-class Program
+// Define StaticDemo class
+public class StaticDemo
 {
-    static void Main(string[] args)
+    // Define static members
+    // Complete Step 2:............
+    public static int Number { get; set; }
+    static StaticDemo()
     {
-        // Implement scenarios to demonstrate attribute usage
-        // Complete Step 3:............
-        Type type = typeof(SampleClass);
+        Number = 10;
+        Console.WriteLine("Static Constructor");
+    }
+    public static void NumChange()
+    {
+        Number = 20;
+    }
 
-        var classAttr = (CustomAttribute)Attribute.GetCustomAttribute(type, typeof(CustomAttribute));
-        Console.WriteLine($"Class Description: {classAttr.Description}, Version: {classAttr.Version}");
+}
+// Define MathHelper static class
+public static class MathHelper
+{
+    // Define static methods
+    // Complete Step 3:............
+    public static void Add(int a, int b)
+    {
+        Console.WriteLine("Static Method");
+        Console.WriteLine(a + b);
+    }
+}
 
-        var method = type.GetMethod("SampleMethod");
-        var methodAttr = (CustomAttribute)Attribute.GetCustomAttribute(method, typeof(CustomAttribute));
-        Console.WriteLine($"Method Description: {methodAttr.Description}, Version: {methodAttr.Version}");
+public class Program
+{
+    public static void Main()
+    {
+        // Demonstrate usage
+        // Complete Step 4:............
+        Console.WriteLine(5);
 
-        var property = type.GetProperty("SampleProperty");
-        var propAttr = (CustomAttribute)Attribute.GetCustomAttribute(property, typeof(CustomAttribute));
-        Console.WriteLine($"Property Description: {propAttr.Description}, Version: {propAttr.Version}");
+        PropertyDemo obj = new PropertyDemo("User1");
+        obj.Display();
+
+        Console.WriteLine(StaticDemo.Number);
+
+        MathHelper.Add(10, 5);
+
+        Console.WriteLine(5);
     }
 }
